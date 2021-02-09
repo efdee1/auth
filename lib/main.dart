@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:system_login/service/auth_service.dart';
+import 'package:system_login/service/loginview.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,9 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Mufasa Auth',
-      home: Splash(),
+      home: AuthScreen(),
     );
   }
 }
@@ -35,27 +39,5 @@ class _SplashState extends State<Splash> {
   }
 }
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Center(child: Text('LoginScreen',
-          style: TextStyle(
-            color: Colors.black
-          ),
-        ),
-
-        ),
-      ),
-    );
-  }
-}
 
 
