@@ -85,24 +85,118 @@ class BackgroundPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     print('painting');
     paintDeepBrown(canvas, size);
+    paintRed(canvas,size);
+    paintOrange(canvas, size);
+
 
   }
 
   void paintDeepBrown(Canvas canvas, Size size) {
     final path = Path();
-    path.moveTo(size.width, size.height / -2);
-    path.lineTo(size.width/4, size.height/-5);
+    path.moveTo(size.width, size.height/2);
+    path.lineTo(size.width, 0);
     path.lineTo(0, 0);
+    path.lineTo(
+        0,
+        lerpDouble(0, size.height, deepBrownAnim.value)
+    );
     _addPointsToPath(path,  [
       Point(
-         0, lerpDouble(0, size.height, deepBrownAnim.value),
+        lerpDouble(0, size.width / 3, deepBrownAnim.value),
+        lerpDouble(0, size.height, deepBrownAnim.value),
 
       ),
-      Point(size.width / 2, size.height/2),
-      Point( size.width,size.height/3.5)
+      Point(
+        lerpDouble(size.width / 2, size.width / 4 * 3, liquidAnim.value),
+        lerpDouble(size.height / 2, size.height / 4 * 3, liquidAnim.value),
+
+      ),
+      Point(
+        size.width,
+        lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
+
+      ),
+      // Point(
+      //     size.width,
+      //   lerpDouble(size.height/5, size.height/4, deepBrownAnim.value)
+      // ),
     ]);
     canvas.drawPath(path, deepBrownPaint);
   }
+
+
+  void paintRed(Canvas canvas,Size size) {
+    final path = Path();
+    path.moveTo(size.width, 300);
+    path.lineTo(size.width, 0);
+    path.lineTo(0, 0);
+    path.lineTo(
+      0,
+      lerpDouble(
+        size.height / 4,
+        size.height / 2,
+        redAnim.value,
+      ),
+    );
+    _addPointsToPath(
+      path,
+      [
+        Point(
+          size.width / 4,
+          lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
+        ),
+        Point(
+          size.width * 3 / 5,
+          lerpDouble(size.height / 4, size.height / 2, liquidAnim.value),
+        ),
+        Point(
+          size.width * 4 / 5,
+          lerpDouble(size.height / 6, size.height / 3, redAnim.value),
+        ),
+        Point(
+          size.width,
+          lerpDouble(size.height / 5, size.height / 4, redAnim.value),
+        ),
+      ],
+    );
+
+    canvas.drawPath(path, redPaint);
+  }
+
+  void paintOrange(Canvas canvas,Size size) {
+    if (orangeAnim.value > 0) {
+      final path = Path();
+
+      path.moveTo(size.width * 3 / 4, 0);
+      path.lineTo(0, 0);
+      path.lineTo(
+        0,
+        lerpDouble(0, size.height / 12, orangeAnim.value),
+      );
+
+      _addPointsToPath(path, [
+        Point(
+          size.width / 7,
+          lerpDouble(0, size.height / 6, liquidAnim.value),
+        ),
+        Point(
+          size.width / 3,
+          lerpDouble(0, size.height / 10, liquidAnim.value),
+        ),
+        Point(
+          size.width / 3 * 2,
+          lerpDouble(0, size.height / 8, liquidAnim.value),
+        ),
+        Point(
+          size.width * 3 / 4,
+          0,
+        ),
+      ]);
+
+      canvas.drawPath(path, orangePaint);
+    }
+  }
+
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
