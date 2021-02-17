@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:system_login/models/colors.dart';
 import 'package:flutter/rendering.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-//import 'package:liquid_swipe/liquid_swipe.dart';
+
 
 
 class BackgroundPainter extends CustomPainter {
@@ -17,16 +17,6 @@ class BackgroundPainter extends CustomPainter {
         orangePaint = Paint()..color = Sunlight.orange..style= PaintingStyle.fill,
         lightYellowPaint = Paint()..color = Sunlight.lightYellow..style= PaintingStyle.fill,
         amberPaint = Paint()..color = Sunlight.amber..style= PaintingStyle.fill,
-
-        // linePaint = Paint()
-        //   ..color = Colors.deepBrownPaint
-        //   ..style = PaintingStyle.stroke
-        //   ..strokeWidth = 4,
-        // lightYellowAnim = CurvedAnimation(
-        //   curve: Curves.elasticOut,
-        //   reverseCurve: Curves.easeInBack,
-        //   parent: animation,
-        // ),
         liquidAnim = CurvedAnimation(
           curve: Curves.elasticOut,
           reverseCurve: Curves.easeInBack,
@@ -116,10 +106,6 @@ class BackgroundPainter extends CustomPainter {
         lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
 
       ),
-      // Point(
-      //     size.width,
-      //   lerpDouble(size.height/5, size.height/4, deepBrownAnim.value)
-      // ),
     ]);
     canvas.drawPath(path, deepBrownPaint);
   }
